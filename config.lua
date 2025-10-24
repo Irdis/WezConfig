@@ -12,7 +12,7 @@ config.adjust_window_size_when_changing_font_size = false
 config.background = {
     {
         source = {
-            File = '\\\\htfs.local\\Users\\SPB_Office\\inovitski\\Pictures\\taylor-wright-2aSpCOPNyO0-unsplash.jpg',
+            File = 'c:\\Distr\\taylor-wright-2aSpCOPNyO0-unsplash.jpg',
         },
         -- width = '100%',
         attachment = 'Fixed',
@@ -31,6 +31,9 @@ config.window_padding = {
   top = 0,
   bottom = 0,
 }
+wezterm.on('cd-home', function(window, pane)
+    pane:send_text 'cd c:\\Users\\inovitski\r\n'
+end)
 wezterm.on('cd-collateral', function(window, pane)
     pane:send_text 'cd c:\\Repo\\hazeltree\\collateral\\Collateral\r\n'
 end)
@@ -53,6 +56,11 @@ config.keys = {
     key = 'w',
     mods = 'CMD',
     action = wezterm.action.CloseCurrentPane { confirm = false },
+  },
+  {
+    key = 'h',
+    mods = 'ALT',
+    action = wezterm.action.EmitEvent 'cd-home',
   },
   {
     key = 'r',
