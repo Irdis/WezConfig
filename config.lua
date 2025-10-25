@@ -2,13 +2,21 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = {}
 
+local at_work = wezterm.hostname() ~= 'Lenovo-PC'
+local home_dir
+if at_work then
+    home_dir = 'c:\\Users\\inovitski'
+else
+    home_dir = 'c:\\Users\\user'
+end
+
 config.window_decorations = "INTEGRATED_BUTTONS"
 config.font_size = 11.5
 config.font = wezterm.font 'FiraCode Nerd Font'
 config.freetype_load_target  = "HorizontalLcd"
 config.window_close_confirmation = "NeverPrompt"
 config.adjust_window_size_when_changing_font_size = false
-
+print()
 config.background = {
     {
         source = {
@@ -29,26 +37,25 @@ config.window_padding = {
   top = 0,
   bottom = 0,
 }
-wezterm.on('cd-home', function(window, pane)
-    pane:send_text 'cd c:\\Users\\inovitski\r\n'
+wezterm.on('cd-home', function(_, pane)
+    pane:send_text('cd ' .. home_dir .. '\r\n')
 end)
-wezterm.on('cd-collateral', function(window, pane)
+wezterm.on('cd-collateral', function(_, pane)
     pane:send_text 'cd c:\\Repo\\hazeltree\\collateral\\Collateral\r\n'
 end)
-wezterm.on('cd-main', function(window, pane)
+wezterm.on('cd-main', function(_, pane)
     pane:send_text 'cd c:\\Repo\\hazeltree\\main\\HTFS\r\n'
 end)
-wezterm.on('cd-ui', function(window, pane)
+wezterm.on('cd-ui', function(_, pane)
     pane:send_text 'cd c:\\Repo\\hazeltree\\ui\\HTFS_UI\\htfs\r\n'
 end)
-wezterm.on('cd-root', function(window, pane)
+wezterm.on('cd-root', function(_, pane)
     pane:send_text 'cd c:\\Repo\\hazeltree\r\n'
 end)
-wezterm.on('cd-nvim', function(window, pane)
-    pane:send_text 'cd C:\\Users\\inovitski\\AppData\\Local\\nvim\r\n'
+wezterm.on('cd-nvim', function(_, pane)
+    pane:send_text('cd ' .. home_dir .. '\\AppData\\Local\\nvim\r\n')
 end)
 
--- config.leader = { key = 't', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
   {
     key = 'w',
