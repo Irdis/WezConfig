@@ -16,7 +16,7 @@ config.font = wezterm.font 'FiraCode Nerd Font'
 config.freetype_load_target  = "HorizontalLcd"
 config.window_close_confirmation = "NeverPrompt"
 config.adjust_window_size_when_changing_font_size = false
-print()
+
 config.background = {
     {
         source = {
@@ -41,16 +41,19 @@ wezterm.on('cd-home', function(_, pane)
     pane:send_text('cd ' .. home_dir .. '\r\n')
 end)
 wezterm.on('cd-collateral', function(_, pane)
-    pane:send_text 'cd c:\\Repo\\hazeltree\\collateral\\Collateral\r\n'
+    pane:send_text('cd c:\\Repo\\hazeltree\\collateral\\Collateral\r\n')
 end)
 wezterm.on('cd-main', function(_, pane)
-    pane:send_text 'cd c:\\Repo\\hazeltree\\main\\HTFS\r\n'
+    pane:send_text('cd c:\\Repo\\hazeltree\\main\\HTFS\r\n')
 end)
 wezterm.on('cd-ui', function(_, pane)
-    pane:send_text 'cd c:\\Repo\\hazeltree\\ui\\HTFS_UI\\htfs\r\n'
+    pane:send_text('cd c:\\Repo\\hazeltree\\ui\\HTFS_UI\\htfs\r\n')
 end)
 wezterm.on('cd-root', function(_, pane)
-    pane:send_text 'cd c:\\Repo\\hazeltree\r\n'
+    pane:send_text('cd c:\\Repo\\hazeltree\r\n')
+end)
+wezterm.on('cd-proj', function(_, pane)
+    pane:send_text('cd c:\\Projects\r\n')
 end)
 wezterm.on('cd-nvim', function(_, pane)
     pane:send_text('cd ' .. home_dir .. '\\AppData\\Local\\nvim\r\n')
@@ -63,6 +66,7 @@ config.keys = {
   { key = 'w', mods = 'CMD', action = wezterm.action.CloseCurrentPane { confirm = false }, },
   { key = 'h', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-home', },
   { key = 'r', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-root', },
+  { key = 'p', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-proj', },
   { key = 'u', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-ui', },
   { key = 'm', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-main', },
   { key = 'c', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-collateral', },
