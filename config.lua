@@ -34,7 +34,7 @@ config.background = {
 config.window_padding = {
   left = 2,
   right = 2,
-  top = 0,
+  top = 4,
   bottom = 0,
 }
 wezterm.on('cd-home', function(_, pane)
@@ -55,43 +55,19 @@ end)
 wezterm.on('cd-nvim', function(_, pane)
     pane:send_text('cd ' .. home_dir .. '\\AppData\\Local\\nvim\r\n')
 end)
+wezterm.on('cd-term', function(_, pane)
+    pane:send_text('cd ' .. home_dir .. '\\.wezterm\r\n')
+end)
 
 config.keys = {
-  {
-    key = 'w',
-    mods = 'CMD',
-    action = wezterm.action.CloseCurrentPane { confirm = false },
-  },
-  {
-    key = 'h',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent 'cd-home',
-  },
-  {
-    key = 'r',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent 'cd-root',
-  },
-  {
-    key = 'u',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent 'cd-ui',
-  },
-  {
-    key = 'm',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent 'cd-main',
-  },
-  {
-    key = 'c',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent 'cd-collateral',
-  },
-  {
-    key = 'v',
-    mods = 'ALT',
-    action = wezterm.action.EmitEvent 'cd-nvim',
-  },
+  { key = 'w', mods = 'CMD', action = wezterm.action.CloseCurrentPane { confirm = false }, },
+  { key = 'h', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-home', },
+  { key = 'r', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-root', },
+  { key = 'u', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-ui', },
+  { key = 'm', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-main', },
+  { key = 'c', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-collateral', },
+  { key = 'v', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-nvim', },
+  { key = 't', mods = 'ALT', action = wezterm.action.EmitEvent 'cd-term', },
   { key = '-', mods = 'ALT', action = wezterm.action.DecreaseFontSize },
   { key = '=', mods = 'ALT', action = wezterm.action.IncreaseFontSize },
   { key = '0', mods = 'ALT', action = wezterm.action.ResetFontSize },
