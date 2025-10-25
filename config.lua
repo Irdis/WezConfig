@@ -12,10 +12,8 @@ config.adjust_window_size_when_changing_font_size = false
 config.background = {
     {
         source = {
-            File = 'c:\\Distr\\taylor-wright-2aSpCOPNyO0-unsplash.jpg',
+            File = wezterm.config_dir .. '\\.wezterm\\forest_small.jpg',
         },
-        -- width = '100%',
-        attachment = 'Fixed',
     },
     {
         source = { Color = '#2D353B' },
