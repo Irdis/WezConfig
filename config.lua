@@ -34,7 +34,7 @@ config.background = {
 config.window_padding = {
   left = 2,
   right = 2,
-  top = 4,
+  top = 0,
   bottom = 0,
 }
 wezterm.on('cd-home', function(_, pane)
